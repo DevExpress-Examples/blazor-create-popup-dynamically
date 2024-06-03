@@ -1,6 +1,7 @@
 ﻿@DxResourceManager.RegisterScripts()
 <Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
+        <DxModalPopup />
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
     <NotFound>
