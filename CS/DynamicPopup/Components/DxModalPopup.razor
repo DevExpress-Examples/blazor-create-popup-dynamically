@@ -1,0 +1,47 @@
+﻿@implements IDisposable
+@inherits DxPopup
+@inject IDxModalPopupService modalService
+
+<DxPopup></DxPopup>
+
+@foreach (var model in DxModalPopupService.Modals) {
+    <DxPopup @key="@model" ShowCloseButton="true" Closed="() => OnClosed(model)" Visible="true">
+        <BodyContentTemplate>
+            <CascadingValue Value="@model" IsFixed="true">
+                <DynamicComponent Type="@model.ComponentType" Parameters="@model.Attributes" />
+            </CascadingValue>
+        </BodyContentTemplate>
+    </DxPopup>
+}
+
+@code {
+    DxModalPopupService DxModalPopupService {
+        get {
+            return (DxModalPopupService)modalService;
+        }
+    }
+
+    protected override void OnInitialized() {
+        base.OnInitialized();
+        DxModalPopupService.ShownAsync += ModalShown;
+        DxModalPopupService.ClosedAsync += ModalClosed;
+    }
+
+    protected void OnClosed(DxPopupModel model) {        
+        DxModalPopupService.Result(model);
+    }
+
+    protected async Task ModalShown(DxPopupModel model) {
+        await InvokeAsync(StateHasChanged);
+    }
+
+    protected async Task ModalClosed(DxPopupModel model) {
+        OnClosed(model);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose() {
+        DxModalPopupService.ShownAsync -= ModalShown;
+        DxModalPopupService.ClosedAsync -= ModalClosed;
+    }
+}

@@ -1,0 +1,15 @@
+﻿@inject IDxModalPopupService Modal
+
+<h3>Component With Close Button</h3>
+
+<p>Passed value: @DemoText</p>
+
+<DxButton Click="async () => await Modal!.CloseModal(PopupModel)">Close</DxButton>
+
+@code {
+    [CascadingParameter]
+    DxPopupModel PopupModel { get; set; }
+
+    [Parameter]
+    public string DemoText { get; set; } = String.Empty;
+}

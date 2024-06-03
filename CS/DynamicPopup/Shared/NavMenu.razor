@@ -1,0 +1,54 @@
+﻿<div id="sidebar" class="@(IsExpanded ? "expanded": "")">
+    <DxGridLayout CssClass="page-layout" RowSpacing="1.5rem">
+        <Rows>
+            <DxGridLayoutRow Areas="header menu-button" Height="auto"></DxGridLayoutRow>
+            <DxGridLayoutRow Areas="navigation navigation"></DxGridLayoutRow>
+            <DxGridLayoutRow Areas="footer footer" Height="auto"></DxGridLayoutRow>
+        </Rows>
+        <Columns>
+            <DxGridLayoutColumn></DxGridLayoutColumn>
+            <DxGridLayoutColumn Width="auto"></DxGridLayoutColumn>
+        </Columns>
+        <Items>
+            <DxGridLayoutItem Area="header" CssClass="sidebar-header">
+                <Template>
+                    <img class="logo" src="images/logo.svg" alt="DevExpress logo" />
+                </Template>
+            </DxGridLayoutItem>
+            <DxGridLayoutItem Area="menu-button" CssClass="sidebar-header menu-button-container">
+                <Template>
+                    <div class="menu-button" @onclick="TriggerIsExpanded"></div>
+                </Template>
+            </DxGridLayoutItem>
+            <DxGridLayoutItem Area="navigation" CssClass="layout-item">
+                <Template>
+                    <div @onclick="Collapse">
+                        <DxMenu Orientation="@Orientation.Vertical" CssClass="menu">
+                            <Items>
+                                <DxMenuItem NavigateUrl="/" Text="Home" CssClass="menu-item" IconCssClass="icon home-icon"></DxMenuItem>
+                            </Items>
+                        </DxMenu>
+                    </div>
+                </Template>
+            </DxGridLayoutItem>
+            <DxGridLayoutItem Area="footer" CssClass="footer">
+                <Template>
+                    <DxButton Text="Docs" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="footer-button" RenderStyle="@ButtonRenderStyle.Light" NavigateUrl="https://docs.devexpress.com/Blazor/400725/blazor-components" IconCssClass="icon docs-icon"></DxButton>
+                    <DxButton Text="Demos" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="footer-button" RenderStyle="@ButtonRenderStyle.Light" NavigateUrl="https://demos.devexpress.com/blazor/" IconCssClass="icon demos-icon"></DxButton>
+                </Template>
+            </DxGridLayoutItem>
+        </Items>
+    </DxGridLayout>
+</div>
+
+@code {
+    public bool IsExpanded { get; set; } = false;
+
+    void TriggerIsExpanded() {
+        IsExpanded = !IsExpanded;
+    }
+
+    void Collapse() {
+        IsExpanded = false;
+    }
+}
