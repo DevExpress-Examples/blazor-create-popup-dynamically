@@ -18,7 +18,7 @@ Follow the steps below to implement this functionality:
     builder.Services.AddScoped<IDxModalPopupService, DxModalPopupService>();
     ```
 
-1. Create a Popup model based on which you will generate your custom pop-up. Refer to the following file for full implementation: [DxPopupModel.cs](/CS/DynamicPopup/Models/DxPopupModel.cs)
+1. Create a Popup model based on which the custom pop-up's content is generated. Refer to the following file for full implementation: [DxPopupModel.cs](/CS/DynamicPopup/Models/DxPopupModel.cs).
 
 1. Create a Razor component ([DxModalPopup.razor](/CS/DynamicPopup/Components/DxModalPopup.razor)) that is connected to the service:
 
