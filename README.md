@@ -20,53 +20,7 @@ Follow the steps below to implement this functionality:
 
 1. Create a Popup model based on which the custom pop-up's content is generated. Refer to the following file for full implementation: [DxPopupModel.cs](/CS/DynamicPopup/Models/DxPopupModel.cs).
 
-1. Create a Razor component ([DxModalPopup.razor](/CS/DynamicPopup/Components/DxModalPopup.razor)) that is connected to the service:
-
-    ```Razor
-    @inject IDxModalPopupService modalService
-
-    <DxPopup></DxPopup>
-
-    <DxPopup @key="@model" ShowCloseButton="true" Closed="() => OnClosed(model)" Visible="true">
-        <BodyContentTemplate>
-            <CascadingValue Value="@model" IsFixed="true">
-                <DynamicComponent Type="@model.ComponentType" Parameters="@model.Attributes" />
-            </CascadingValue>
-        </BodyContentTemplate>
-    </DxPopup>
-
-    @code {
-        DxModalPopupService DxModalPopupService {
-            get {
-                return (DxModalPopupService)modalService;
-            }
-        }
-
-        protected override void OnInitialized() {
-            base.OnInitialized();
-            DxModalPopupService.ShownAsync += ModalShown;
-            DxModalPopupService.ClosedAsync += ModalClosed;
-        }
-
-        protected void OnClosed(DxPopupModel model) {        
-            DxModalPopupService.Result(model);
-        }
-
-        protected async Task ModalShown(DxPopupModel model) {
-            await InvokeAsync(StateHasChanged);
-        }
-
-        protected async Task ModalClosed(DxPopupModel model) {
-            OnClosed(model);
-            await InvokeAsync(StateHasChanged);
-        }
-
-        public void Dispose() {
-            DxModalPopupService.ShownAsync -= ModalShown;
-            DxModalPopupService.ClosedAsync -= ModalClosed;
-        }
-    }
-    ```
+1. Create a Razor component ([DxModalPopup.razor](/CS/DynamicPopup/Components/DxModalPopup.razor)) that is connected to the service.
 
 1. _Optional._ If you want to show several pop-up windows on one page, create several `<DxPopup>` instances. To do so, wrap the Popup's markup in the `@foreach` loop:
 
@@ -89,7 +43,7 @@ Follow the steps below to implement this functionality:
     </Router>
     ```
 
-1. Create a `.cs` file that implements content generation and show and close operations. Refer to the following file for the full implementation: [DxModalPopup.cs](/CS/DynamicPopup/Components/DxModalPopup.cs).
+1. Create a `.cs` file that implements content generation, and show and close operations. Refer to the following file for the full implementation: [DxModalPopup.cs](/CS/DynamicPopup/Components/DxModalPopup.cs).
 
 1. Create a Razor file ([ComponentWithCloseButton.razor](/CS/DynamicPopup/Components/ComponentWithCloseButton.razor)) that accepts parameters and uses the model to render content:
 
