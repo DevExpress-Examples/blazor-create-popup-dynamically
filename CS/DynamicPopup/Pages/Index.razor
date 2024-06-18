@@ -1,20 +1,18 @@
 ﻿@page "/"
+@inject IDxModalPopupService Modal
 
 <h2 class="pt-2">@text</h2>
 
-<DxModalPopup @ref="popup" ShowCloseButton="true" />
-
 <DxButton Text="Show modal with parameter"
           Click="@(async () => {
-            text = "Modal with parameter button is opened!";
-            await popup!.ShowModal<ComponentWithCloseButton>(new() {
+            text = "Modal with parameter button is open!";
+            await Modal.ShowModal<ComponentWithCloseButton>(new() {
                 { nameof(ComponentWithCloseButton.DemoText), "Modal Content" }
             });
-            text = "Modal with parameter was closed!";
+            text = "Modal with parameter is closed!";
           })">
 </DxButton>
 
 @code {
-    string text = "DxModalPopup demo";
-    DxModalPopup? popup;
+    string text = "Modal Popup";
 }
