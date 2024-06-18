@@ -78,7 +78,7 @@ Follow the steps below to implement this functionality:
                   await Modal.ShowModal<ComponentWithCloseButton>(new() {
                       { nameof(ComponentWithCloseButton.DemoText), "Modal Content" }
                   });
-                  text = "Modal with parameter was closed!";
+                  text = "Modal with parameter is closed!";
               })">
     </DxButton>
 
