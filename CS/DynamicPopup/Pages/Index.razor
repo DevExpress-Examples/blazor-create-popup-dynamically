@@ -3,9 +3,9 @@
 
 <h2 class="pt-2">@text</h2>
 
-<DxButton Text="Show a modal with parameter"
+<DxButton Text="Show modal with parameter"
           Click="@(async () => {
-            text = "Modal with parameter button is opened!";
+            text = "Modal with parameter button is open!";
             await Modal.ShowModal<ComponentWithCloseButton>(new() {
                 { nameof(ComponentWithCloseButton.DemoText), "Modal Content" }
             });
