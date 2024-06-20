@@ -5,13 +5,13 @@
 <!-- default badges end -->
 # Blazor Popup - Add Content Dynamically
 
-This example creates a service to generate the Popup's content dynamically.
+This example creates a service to generate Popup content dynamically.
 
 ![Add Popup content in code](/blazor-popup-created-dynamically.png)
 
-Follow the steps below to implement this functionality:
+To incorporate this capability in your DevExpress-powered Blazor app:
 
-1. Create a service that shows and closes the pop-up window. This service allows you to declare the `DxPopup` component in your application only once. Refer to the following folder for the full service implementation: [Services](/CS/DynamicPopup/Services/).
+1. Create a service to display/close the pop-up window. This service allows you to declare the DxPopup component in your application once. Refer to the following folder for implementation details: [Services](/CS/DynamicPopup/Services/).
 
 1. Register the service in the _Program.cs_ file:
 
@@ -19,11 +19,11 @@ Follow the steps below to implement this functionality:
     builder.Services.AddScoped<IDxModalPopupService, DxModalPopupService>();
     ```
 
-1. Create a Popup model based on which the custom popup's content is generated. Refer to the following file for the full implementation: [DxPopupModel.cs](/CS/DynamicPopup/Models/DxPopupModel.cs).
+1. Create a Popup model (used to generate custom popup content). Refer to the following file for implementation details: [DxPopupModel.cs](/CS/DynamicPopup/Models/DxPopupModel.cs).
 
 1. Create a Razor component ([DxModalPopup.razor](/CS/DynamicPopup/Components/DxModalPopup.razor)) that injects the service.
 
-1. _Optional._ If you want to show multiple pop-up windows on one page, create the corresponding number of `DxPopup` instances. Wrap the Popup's markup in a `@foreach` loop:
+1. _Optional._ If you wish to display multiple pop-up windows on a single page, create a corresponding number of `DxPopup` instances. Wrap the Popup's markup in a `@foreach` loop:
 
     ```Razor
     @foreach (var model in DxModalPopupService.Modals) {
@@ -33,7 +33,7 @@ Follow the steps below to implement this functionality:
     }
     ```
 
-1. Declare the `DxModalPopup` component in the _App.razor_ file. This is the only declaration of the component in the application.
+1. Declare the `DxModalPopup` component in the _App.razor_ file. This is the only component declaration in the application.
 
     ```Razor
     <Router AppAssembly="@typeof(App).Assembly">
@@ -44,7 +44,7 @@ Follow the steps below to implement this functionality:
     </Router>
     ```
 
-1. Create a `.cs` file that implements content generation, and show and close operations. Refer to the following file for the full implementation: [DxModalPopup.cs](/CS/DynamicPopup/Components/DxModalPopup.cs).
+1. Create a `.cs` file that implements content generation and display/close operations. Refer to the following file for the full implementation: [DxModalPopup.cs](/CS/DynamicPopup/Components/DxModalPopup.cs).
 
 1. Create a Razor file ([ComponentWithCloseButton.razor](/CS/DynamicPopup/Components/ComponentWithCloseButton.razor)) that accepts parameters and uses the model to render content:
 
@@ -66,7 +66,7 @@ Follow the steps below to implement this functionality:
     }
     ```
 
-1. In the [Index.razor](/CS/DynamicPopup/Pages/Index.razor) file, create a button that opens your custom pop-up through a service and pass corresponding parameters to the button's `Click` event handler:
+1. Create a button (in the [Index.razor](/CS/DynamicPopup/Pages/Index.razor) file) to open your custom pop-up using the service and pass corresponding parameters to the button's `Click` event handler:
 
     ```Razor
     @inject IDxModalPopupService Modal
