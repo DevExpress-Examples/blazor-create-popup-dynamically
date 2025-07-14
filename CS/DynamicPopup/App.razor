@@ -1,4 +1,8 @@
 ﻿@DxResourceManager.RegisterScripts()
+@DxResourceManager.RegisterTheme(Themes.Fluent.Clone(properties => {
+    properties.AddFilePaths("css/theme-fluent.css");
+}))
+
 <Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <DxModalPopup />
