@@ -1,6 +1,6 @@
 ﻿.page {
     height: 100%;
-    font-family: var(--app-font-sans-serif);
+    font-family: var(--dxds-font-family-sans-serif);
 }
 
 ::deep .icon-back {
