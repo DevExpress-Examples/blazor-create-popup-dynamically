@@ -1,7 +1,16 @@
 @import url('open.iconic/font/css/open-iconic-bootstrap.min.css');
 
+:root {
+    --app-primary-color: #5f368d;
+    --app-black: #222;
+    --app-white: #fff;
+    --app-body-color: #212529;
+    --app-link-color: #5f368d;
+    --app-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+}
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: var(--app-font-sans-serif);
 }
 
 html, body {
